@@ -5,7 +5,7 @@ from firebase_admin import credentials, firestore, initialize_app
 # Initialize Flask App
 app = Flask(__name__)
 # Initialize Firestore DB
-cred = credentials.Certificate('key.json')
+cred = credentials.Certificate('flask-api-todo-firebase-firebase-adminsdk-whbps-56e8e8ced9.json')
 default_app = initialize_app(cred)
 db = firestore.client()
 todo_ref = db.collection('todos')

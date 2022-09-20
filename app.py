@@ -2,13 +2,17 @@
 import os
 from flask import Flask, request, jsonify
 from firebase_admin import credentials, firestore, initialize_app
+
 # Initialize Flask App
 app = Flask(__name__)
+
 # Initialize Firestore DB
 cred = credentials.Certificate('flask-api-todo-firebase-firebase-adminsdk-whbps-56e8e8ced9.json')
 default_app = initialize_app(cred)
 db = firestore.client()
 todo_ref = db.collection('todos')
+
+
 @app.route('/add', methods=['POST'])
 def create():
     """
@@ -22,6 +26,7 @@ def create():
         return jsonify({"success": True}), 200
     except Exception as e:
         return f"An Error Occured: {e}"
+
 @app.route('/list', methods=['GET'])
 def read():
     """
@@ -40,6 +45,7 @@ def read():
             return jsonify(all_todos), 200
     except Exception as e:
         return f"An Error Occured: {e}"
+        
 @app.route('/update', methods=['POST', 'PUT'])
 def update():
     """
@@ -53,6 +59,7 @@ def update():
         return jsonify({"success": True}), 200
     except Exception as e:
         return f"An Error Occured: {e}"
+
 @app.route('/delete', methods=['GET', 'DELETE'])
 def delete():
     """
@@ -65,6 +72,9 @@ def delete():
         return jsonify({"success": True}), 200
     except Exception as e:
         return f"An Error Occured: {e}"
+
 port = int(os.environ.get('PORT', 8080))
+
+
 if __name__ == '__main__':
     app.run(threaded=True, host='0.0.0.0', port=port)

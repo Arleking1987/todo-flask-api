@@ -7,7 +7,7 @@ from firebase_admin import credentials, firestore, initialize_app
 
 
 #Initialize Firestore DB
-cred = credentials.Certificate('todo-flask-rest-firebase-adminsdk-xd4li-5eae287f08.json')
+cred = credentials.Certificate('todo-flask-rest-firebase-adminsdk-xd4li-0deea11550.json')
 default_app = initialize_app(cred,{'databaseURL':'https://todo-flask-rest-default-rtdb.firebaseio.com/'})
 db = firestore.client()
 todo_ref = db.collection('todos')

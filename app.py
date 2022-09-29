@@ -1,14 +1,14 @@
 # Required Imports
 import os
-from flask import Flask, request, jsonify
+from urllib import response
+from flask import Flask, request, jsonify, render_template, Response
 from firebase_admin import credentials, firestore, initialize_app
 
-# Initialize Flask App
-app = Flask(__name__)
 
-# Initialize Firestore DB
-cred = credentials.Certificate('todo-flask-rest-firebase-adminsdk-xd4li-0deea11550.json')
-default_app = initialize_app(cred)
+
+#Initialize Firestore DB
+cred = credentials.Certificate('todo-flask-rest-firebase-adminsdk-xd4li-5eae287f08.json')
+default_app = initialize_app(cred,{'databaseURL':'https://todo-flask-rest-default-rtdb.firebaseio.com/'})
 db = firestore.client()
 todo_ref = db.collection('todos')
 
